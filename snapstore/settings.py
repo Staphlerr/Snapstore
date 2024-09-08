@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g^8e5)hyp+2k1o^9-q04c(6*clz-l$c9i!#2ko4+fa6w+hhx5n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1","belva-ghani-snapstore.pbp.cs.ui.ac.id"]
 
 
 # Application definition
