@@ -6,7 +6,7 @@ Kelas: PBP A
 
 NPM: 2306203526
 
-Link to the snapstore -> [LINK](http://belva-ghani-snapstore.pbp.cs.ui.ac.id/)
+Link to the snapstore -> [http://belva-ghani-snapstore.pbp.cs.ui.ac.id/](http://belva-ghani-snapstore.pbp.cs.ui.ac.id/)
 
 ## Tugas 2
 
