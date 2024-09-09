@@ -24,7 +24,7 @@ Link to the snapstore -> [LINK](http://belva-ghani-snapstore.pbp.cs.ui.ac.id/)
 10. Selesai.
 
 ### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-![alt text](Screenshot 2024-09-09 234332.png)
+![Screenshot 2024-09-09 234332.png](https://github.com/Staphlerr/snapstore/blob/e3010cc47524d196a55d809a1c8c6512e9e28b71/Screenshot%202024-09-09%20234332.png)
 
 ### Jelaskan fungsi git dalam pengembangan perangkat lunak!
 
