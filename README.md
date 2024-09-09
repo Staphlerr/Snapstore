@@ -1,7 +1,9 @@
 # Snapstore 🛍️
 
 Nama: Belva Ghani Abhinaya
+
 Kelas: PBP A
+
 NPM: 2306203526
 
 Link to the snapstore -> [LINK](http://belva-ghani-snapstore.pbp.cs.ui.ac.id/)
