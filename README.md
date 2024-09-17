@@ -77,3 +77,7 @@ Fungsi `is_valid()` pada form Django digunakan untuk memvalidasi data yang dikir
 10. Tambahkan path URL ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
 
 ### Screenshot Postman
+![show_xml](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20234937.png)
+![show_json](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20234950.png)
+![show_xml_by_id](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20235024.png)
+![show_json_by_id](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20235007.png)
