@@ -1,12 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect 
+from django.http import HttpResponse
+from django.core import serializers
+from main.forms import MoodEntryForm
+from main.models import MoodEntry
 
 def show_main(request):
+    mood_entries = MoodEntry.objects.all()
     context = {
-        'name' : 'Ayam Geybok Bang Bang',
-        'price': '82.000',
-        'description': 'Ayam pake mozzarella pedes gila huh hah',
-        'rating': '9,7/10',
-        'date': '8 Agustus 2024',
+        'name' : 'Belva Ghani Abhinaya',
+        'npm': '2306203526',
+        'class': 'PBP A',
+        'mood_entries': mood_entries
     }
 
     return render(request, "product.html", context)
+
+def create_mood_entry(request):
+    form = MoodEntryForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('main:show_main')
+
+    context = {'form': form}
+    return render(request, "create_mood_entry.html", context)
+
+def show_xml(request):
+    data = MoodEntry.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_xml_by_id(request, id):
+    data = MoodEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = MoodEntry.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_json_by_id(request, id):
+    data = MoodEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
