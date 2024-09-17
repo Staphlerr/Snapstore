@@ -37,3 +37,43 @@ Django dipilih sebagai permulaan pembelajaran karena menyediakan banyak fitur ba
 ### Mengapa model pada Django disebut sebagai ORM?
 
 Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena berfungsi sebagai jembatan antara objek dalam kode Python dan tabel di database relasional. Dengan ORM, pengembang dapat berinteraksi dengan database menggunakan objek Python tanpa perlu menulis query SQL secara langsung.
+
+
+
+
+
+## Tugas 3
+
+### Jelaskan mengapa kita memerlukan *data delivery* dalam pengimplementasian sebuah platform?
+
+Data delivery sangat penting dalam pengimplementasian sebuah platform karena memungkinkan platform tersebut untuk berkomunikasi, bertukar data, dan berintegrasi dengan sistem lain secara efisien. Data delivery membantu dalam mengelola data secara dinamis, memperbarui konten, dan memastikan bahwa aplikasi tetap responsif dan relevan bagi pengguna.
+
+### Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+
+Keduanya merupakan format untuk pertukaran data. XML (eXtensible Markup Language) sudah lama digunakan dalam berbagai aplikasi untuk menyimpan dan mengirimkan informasi yang terstruktur. Namun, JSON (JavaScript Object Notation) lebih baik dan lebih populer karena beberapa alasan:
+1. JSON lebih sederhana dan ringkas dibandingkan XML. JSON menggunakan lebih sedikit karakter dan lebih mudah dibaca oleh manusia, yang membuatnya lebih cepat untuk diproses oleh komputer.
+2. JSON dirancang untuk menjadi format data yang lebih mudah dipahami dan digunakan oleh pengembang.
+3. JSON mudah diintegrasikan dengan JavaScript, yang membuatnya sangat cocok untuk pengembangan web dan penggunaan dalam aplikasi berbasis browser.
+4. JSON memiliki waktu parsing yang lebih cepat dibandingkan XML, yang membuatnya lebih efisien dalam penggunaan real-time.
+
+### Jelaskan fungsi dari method `is_valid()` pada form Django dan mengapa kita membutuhkan method tersebut?
+
+Fungsi `is_valid()` pada form Django digunakan untuk memvalidasi data yang dikirim oleh pengguna melalui form. Method ini memeriksa apakah data tersebut sesuai dengan kriteria yang didefinisikan dalam form (seperti jenis data, panjang maksimal, dll.) dan memastikan bahwa data yang tidak valid tidak diproses lebih lanjut, sehingga membantu menjaga integritas data dan keamanan aplikasi. Kita membutuhkan method ini untuk mencegah kesalahan data dan serangan yang mungkin terjadi melalui input yang tidak valid.
+
+### Mengapa kita membutuhkan `csrf_token` saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan `csrf_token` pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+`csrf_token` (Cross-Site Request Forgery token) adalah komponen keamanan penting saat membuat form di Django. Ini bertujuan untuk mencegah serangan CSRF, di mana penyerang dapat memanipulasi pengguna yang sah untuk melakukan tindakan tanpa sepengetahuan atau persetujuan mereka pada aplikasi web. Tanpa `csrf_token`, form bisa dimanipulasi oleh penyerang untuk melakukan aksi berbahaya seperti mengubah kata sandi atau transaksi finansial. `csrf_token` membantu memastikan bahwa setiap request yang diterima oleh server benar-benar berasal dari pengguna yang sah dan bukan dimanipulasi oleh pihak ketiga.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Buatlah berkas `forms.py` pada direktori main, yang berisikan kode untuk membuat struktur *form* yang dapat menerima data baru dari pengguna. Isi dari `forms.py` akan berdasar pada models yang telah dibuat sebelumnya.
+2. Masuklah ke dalam berkas `views.py`, tambahkan import redirect dan beberapa fungsi dari `forms.py` dan `models.py`, serta HTTPResponse dan serializers.
+3. Buatlah fungsi baru untuk menambahkan item baru dengan POST.
+4. Buka `urls.py` yang ada pada direktori main dan import fungsi yang sudah dibuat tadi.
+5. Tambahkan path URL ke dalam variabel urlpatterns pada `urls.py` di main.
+6. Buat berkas HTML baru pada direktori main/templates, yang berisikan penanda block untuk form, token untuk security, template tag, dan tombol submit.
+7. Buka `main.html` dan tambahkan beberapa kode untuk menampilkan data form dalam bentuk tabel serta tombol submit yang akan redirect ke halaman form.
+8. Buatlah 4 fungsi pada `views.py` untuk melihat data JSON dan XML, contohnya adalah fungsi `show_xml`, `show_json`, `show_json_by_id`, `show_xml_by_id`.
+9. Buka `urls.py` yang ada pada direktori main dan import fungsi yang sudah dibuat tadi.
+10. Tambahkan path URL ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+
+### Screenshot Postman
