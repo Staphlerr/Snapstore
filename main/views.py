@@ -9,7 +9,7 @@ def show_main(request):
     context = {
         'name' : 'Belva Ghani Abhinaya',
         'npm': '2306203526',
-        'class': 'PBP A',
+        'class': 'A',
         'mood_entries': mood_entries
     }
 
