@@ -9,7 +9,7 @@
 <h5>Class: </h5>
 <p>{{ class }}</p> 
 
-{% if not mood_entries %}
+{% if not item_entries %}
 <p>Belum ada data barang pada Snapstore.</p>
 {% else %}
 <table>
@@ -19,11 +19,11 @@
     <th>Description</th>
   </tr>
 
-  {% for mood_entry in mood_entries %}
+  {% for item_entry in item_entries %}
   <tr>
-    <td>{{mood_entry.name}}</td>
-    <td>{{mood_entry.price}}</td>
-    <td>{{mood_entry.description}}</td>
+    <td>{{item_entry.name}}</td>
+    <td>{{item_entry.price}}</td>
+    <td>{{item_entry.description}}</td>
   </tr>
   {% endfor %}
 </table>
@@ -31,7 +31,13 @@
 
 <br />
 
-<a href="{% url 'main:create_mood_entry' %}">
+<a href="{% url 'main:create_item_entry' %}">
   <button>Add New Item</button>
 </a>
+
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}
