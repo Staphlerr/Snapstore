@@ -11,6 +11,7 @@ Link to the snapstore -> [http://belva-ghani-snapstore.pbp.cs.ui.ac.id/](http://
 <details>
 <summary><b>Tugas 2</b></summary>
 <br>
+  
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
 
 1. Membuat direktori baru yaitu direktori Snapstore untuk dijadikan direktori untuk project django baru
@@ -44,8 +45,9 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena berfung
 
 
 <details>
-<summary><b>Tugas 2</b></summary>
+<summary><b>Tugas 3</b></summary>
 <br>
+  
 ### Jelaskan mengapa kita memerlukan *data delivery* dalam pengimplementasian sebuah platform?
 
 Data delivery sangat penting dalam pengimplementasian sebuah platform karena memungkinkan platform tersebut untuk berkomunikasi, bertukar data, dan berintegrasi dengan sistem lain secara efisien. Data delivery membantu dalam mengelola data secara dinamis, memperbarui konten, dan memastikan bahwa aplikasi tetap responsif dan relevan bagi pengguna.
@@ -83,4 +85,19 @@ Fungsi `is_valid()` pada form Django digunakan untuk memvalidasi data yang dikir
 ![show_json](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20234950.png)
 ![show_xml_by_id](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20235024.png)
 ![show_json_by_id](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20235007.png)
+</details>
+
+<details>
+<summary><b>Tugas 4</b></summary>
+<br>
+
+### Apa perbedaan antara HttpResponseRedirect() dan redirect()?
+
+### Jelaskan cara kerja penghubungan model Product dengan User!
+
+### Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
+### Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 </details>
