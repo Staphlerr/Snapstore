@@ -8,8 +8,9 @@ NPM: 2306203526
 
 Link to the snapstore -> [http://belva-ghani-snapstore.pbp.cs.ui.ac.id/](http://belva-ghani-snapstore.pbp.cs.ui.ac.id/)
 
-## Tugas 2
-
+<details>
+<summary>## Tugas 2</summary>
+<br>
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
 
 1. Membuat direktori baru yaitu direktori Snapstore untuk dijadikan direktori untuk project django baru
@@ -37,7 +38,7 @@ Django dipilih sebagai permulaan pembelajaran karena menyediakan banyak fitur ba
 ### Mengapa model pada Django disebut sebagai ORM?
 
 Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena berfungsi sebagai jembatan antara objek dalam kode Python dan tabel di database relasional. Dengan ORM, pengembang dapat berinteraksi dengan database menggunakan objek Python tanpa perlu menulis query SQL secara langsung.
-
+</details>
 
 
 
