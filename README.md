@@ -87,17 +87,42 @@ Fungsi `is_valid()` pada form Django digunakan untuk memvalidasi data yang dikir
 ![show_json_by_id](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20235007.png)
 </details>
 
-<details>
+<details open>
 <summary><b>Tugas 4</b></summary>
 <br>
 
 ### Apa perbedaan antara HttpResponseRedirect() dan redirect()?
 
+`HttpResponseRedirect()` adalah kelas bawaan Django yang digunakan untuk membuat respons pengalihan (status 302) dengan URL tujuan yang harus ditentukan secara eksplisit, sementara `redirect()` adalah fungsi utilitas yang lebih fleksibel dan mudah digunakan, memungkinkan pengalihan dengan berbagai argumen seperti URL, nama *URL pattern*, atau objek model. `redirect()` menyederhanakan penggunaan `HttpResponseRedirect()` dengan menyediakan abstraksi yang lebih praktis dalam kebanyakan kasus.
+
 ### Jelaskan cara kerja penghubungan model Product dengan User!
+
+Untuk menghubungkan model `Product` dengan `User` di Django, biasanya digunakan *ForeignKey* yang menautkan setiap produk ke pengguna tertentu. Dalam model `Product`, tambahkan field `owner` atau `user` yang mengacu ke model `User` dengan `ForeignKey(User, on_delete=CASCADE)`, sehingga setiap produk terkait dengan satu pengguna. `on_delete=CASCADE` memastikan jika pengguna dihapus, produk terkait juga ikut dihapus. Ini memungkinkan setiap produk dimiliki oleh pengguna yang berbeda.
 
 ### Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 
+Authentication adalah proses memverifikasi identitas pengguna (misalnya, dengan username dan password), sementara authorization adalah pemberian izin untuk mengakses sumber daya atau fitur setelah pengguna terautentikasi. Saat pengguna login, **authentication** dilakukan dengan memeriksa kredensialnya. Django mengimplementasikan authentication melalui sistem login bawaan, memeriksa username dan password dengan model `User`. Setelah itu, **authorization** dilakukan dengan memastikan pengguna memiliki izin untuk mengakses halaman atau aksi tertentu menggunakan fitur seperti `permissions` atau `is_authenticated`.
+
 ### Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 
+Django mengingat pengguna yang telah login dengan menyimpan *session ID* dalam cookie di browser pengguna. Setiap kali pengguna mengirim permintaan, Django memeriksa cookie ini untuk mengidentifikasi sesi dan pengguna terkait. Selain untuk sesi, cookies juga digunakan untuk menyimpan preferensi pengguna atau data pelacakan. Namun, tidak semua cookies aman; misalnya, cookies yang tidak dienkripsi (*non-secure*) rentan terhadap pencurian melalui serangan *man-in-the-middle*. Django melindungi cookies penting dengan fitur seperti *HttpOnly* dan *Secure* untuk mencegah akses yang tidak sah.
+
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Implementasi fungsi register, fungsi login_user, dan fungsi logout_user pada `views.py`, lalu tambahkan path URL ketiga fungsi tadi ke `urls.py`.
+   - Fungsi register digunakan untuk membuat laman untuk mendaftarkan akun pengguna
+   - Fungsi login_user digunakan untuk mengautentikasi pengguna yang ingin masuk ke dalam websitenya. Fungsi login_user diimplementasi menggunakan fungsi `authenticate` dan `login` yang merupakan fungsi bawaan Django.
+   - Fungsi logout_user digunakan untuk melakukan mekanisme keluar dari akun. Fungsi logout_user diimplementasi menggunakan fungsi `logout` yang merupakan fungsi bawaan Django.
+   - Buat juga `register.html` dan `login.html` untuk interface laman register dan laman login (logout tidak perlu interface karena ketika pengguna melakukan logout, akan kembali ke login.html).
+2. Membuat 2 akun dengan meregistrasi di bagian url register. Kemudian, login dengan akun pertama yang telah dibuat. Setelah login, kemudian mengakses create_item_entry untuk menambahkan 3 dummy data. Setelah itu, logout dari akun pertama dan login dengan akun yang lain (akun kedua) dan lanjut mengakses create_item_entry untuk menambahkan 3 dummy data yang berbeda dengan akun pertama. Setelah itu lakukan logout dari akun kedua.
+3. Buka `models.py` dan import User, lalu tambahkan potongan kode `user = models.ForeignKey(User, on_delete=models.CASCADE)` pada fungsi Product untuk menghubungkan satu item entry dengan satu user, sehingga untuk sebuah item entry pasti terasosiasikan dengan seorang user.
+4. Selanjutnya yaitu buka `views.py` lalu tambahkan potongan kode `mood_entry = form.save(commit=False)` pada fungsi create_item_entry. Parameter (commit=False) disini berguna untuk mencegah Django agar tidak langsung menyimpan objek yang telah dibuat dari form langsung ke database, sehingga user dapat memodifikasi objek terlebih dahulu sebelum disimpan ke database.
+5. Ubah value 'name' pada item_entries menjadi `reguest.user.username` sehingga menampilkan username pengguna yang login pada halaman main.
+6. Jangan lupa untuk melakukan makemigrations dan migrate, karena mengubah model.
+7. Selanjutnya persiapkan web untuk _environtment production_ dengan import os pada settings.py dan ganti variabel DEBUG menjadi:
+PRODUCTION = os.getenv("PRODUCTION", False)
+DEBUG = not PRODUCTION
+8. Selanjutnya, buka `views.py` lalu import HttpResponseRedirect, reverse, dan datetime yang kemudian kita akan menggunakannya pada fungsi login_user, sehingga dapat menambahkan _cookie_ yang bernama `last_login` untuk melihat kapan terakhir kali pengguna melakukan login.
+9. Tambahkan informasi _cookie_ `last_login` pada response yang akan ditampilkan di halaman web dengan menambahkan `'last_login': request.COOKIES['last_login']` pada fungsi show_main
+10. Jangan lupa untuk menambahkan implementasi kode untuk menghapus cookie last_login saat pengguna melakukan logout.
+11. Terakhir, buka berkas `main.html` dan tambahkan kode `<h5>Sesi terakhir login: {{ last_login }}</h5>` untuk menampilkan last_login pengguna
 </details>
