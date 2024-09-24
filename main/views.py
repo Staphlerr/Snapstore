@@ -8,12 +8,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse
 from django.core import serializers
-from main.forms import ItemEntryForm
-from main.models import ItemEntry
+from main.forms import ProductForm
+from main.models import Product
 
 @login_required(login_url='/login')
 def show_main(request):
-    item_entries = ItemEntry.objects.filter(user=request.user)
+    item_entries = Product.objects.filter(user=request.user)
     context = {
         'name': request.user.username,
         'npm': '2306203526',
@@ -25,7 +25,7 @@ def show_main(request):
     return render(request, "product.html", context)
 
 def create_item_entry(request):
-    form = ItemEntryForm(request.POST or None)
+    form = ProductForm(request.POST or None)
 
     if form.is_valid() and request.method == "POST":
         item_entry = form.save(commit=False)
@@ -37,19 +37,19 @@ def create_item_entry(request):
     return render(request, "create_item_entry.html", context)
 
 def show_xml(request):
-    data = ItemEntry.objects.all()
+    data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_xml_by_id(request, id):
-    data = ItemEntry.objects.filter(pk=id)
+    data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = ItemEntry.objects.all()
+    data = Product.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_json_by_id(request, id):
-    data = ItemEntry.objects.filter(pk=id)
+    data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def register(request):
