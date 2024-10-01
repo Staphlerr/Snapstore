@@ -1,43 +1,75 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Snapstore</h1>
+{% load static %}
 
-<h5>Name: </h5>
-<p>{{ name }}</p> 
-<h5>NPM: </h5>
-<p>{{ npm }}</p> 
-<h5>Class: </h5>
-<p>{{ class }}</p> 
+{% include 'navbar.html' %}
+<!-- Welcome Banner -->
+<body class="product-page">
+<div style="background-image: url('{% static 'images/welcome.png' %}'); background-size: cover; border-radius: 25px; height: auto; aspect-ratio: 640 / 360;">
+</div>
 
+<!-- Info Blocks Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+  <div class="info-block">
+    <!-- Cover section -->
+    <div class="info-cover">
+      <h3 class="text-lg font-bold mb-2"></h3>
+        <h3>Creator</h3>
+    </div>
+    <!-- Hidden information section -->
+    <div class="info-content">
+      <h3 class="text-lg font-bold mb-2">Made by:</h3>
+        <p class="text-base text-white mb-2">Belva Ghani Abhinaya - 2306203526</p>
+        <p class="text-base text-white mb-2">PBP A</p>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <!-- Cover section -->
+    <div class="info-cover">
+      <h3 class="text-lg font-bold mb-2"></h3>
+        <h3>Tagline</h3>
+    </div>
+    <!-- Hidden information section -->
+    <div class="info-content">
+      <h3 class="text-lg font-bold mb-2">Our tagline:</h3>
+        <p class="text-base text-white mb-2">Snap dan Dapatkan Segalanya!</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Learn More</button>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <!-- Cover section -->
+    <div class="info-cover">
+      <h3 class="text-lg font-bold mb-2"></h3>
+        <h3>Add Item</h3>
+    </div>
+    <!-- Hidden information section -->
+    <div class="info-content">
+      <h3 class="text-lg font-bold mb-2">Want to add product?</h3>
+        <p class="text-base text-white mb-2">Click the button below to add a new item.</p>
+        <a href="{% url 'main:create_item_entry' %}" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add New Item</a>
+    </div>
+  </div>
+</div>
+
+<!-- Products Section -->
 {% if not item_entries %}
-<p>Belum ada data barang pada Snapstore.</p>
+    <div class="flex justify-center items-center flex-col mt-10">
+        <img src="{% static 'images/no_product.png' %}" alt="No Products" class="w-1/4 md:w-1/6 lg:w-1/8">
+        <p class="text-lg text-grey-400 mt-4">Me sadge, u no add product yet TvT</p>
+    </div>
 {% else %}
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Description</th>
-  </tr>
-
-  {% for item_entry in item_entries %}
-  <tr>
-    <td>{{item_entry.name}}</td>
-    <td>{{item_entry.price}}</td>
-    <td>{{item_entry.description}}</td>
-  </tr>
-  {% endfor %}
-</table>
+    <div class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for item_entry in item_entries %}
+            {% include 'card_product.html' %}
+        {% endfor %}
+    </div>
 {% endif %}
 
-<br />
-
-<a href="{% url 'main:create_item_entry' %}">
-  <button>Add New Item</button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
+<!-- User's Last Login Section -->
+<div class="text-center p-4 bg-gray-200 text-gray-700">
+    <h5>Last Login: {{ last_login }}</h5>
+</div>
+</body>
 {% endblock content %}

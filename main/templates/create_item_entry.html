@@ -1,18 +1,34 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
-<h1>Add New Item</h1>
+{% include 'navbar.html' %}
 
-<form method="POST">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-    <tr>
-      <td></td>
-      <td>
-        <input type="submit" value="Add New Item" />
-      </td>
-    </tr>
-  </table>
-</form>
+<body class="login-page">
+<div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Add New Item</h2>
 
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Render the form fields -->
+            {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <p class="text-red-500 text-xs italic">{{ field.errors }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Add New Item
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
 {% endblock %}
