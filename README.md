@@ -87,7 +87,7 @@ Fungsi `is_valid()` pada form Django digunakan untuk memvalidasi data yang dikir
 ![show_json_by_id](https://github.com/Staphlerr/snapstore/blob/main/images/Screenshot%202024-09-17%20235007.png)
 </details>
 
-<details open>
+<details>
 <summary><b>Tugas 4</b></summary>
 <br>
 
@@ -125,4 +125,40 @@ DEBUG = not PRODUCTION
 9. Tambahkan informasi _cookie_ `last_login` pada response yang akan ditampilkan di halaman web dengan menambahkan `'last_login': request.COOKIES['last_login']` pada fungsi show_main
 10. Jangan lupa untuk menambahkan implementasi kode untuk menghapus cookie last_login saat pengguna melakukan logout.
 11. Terakhir, buka berkas `main.html` dan tambahkan kode `<h5>Sesi terakhir login: {{ last_login }}</h5>` untuk menampilkan last_login pengguna
+</details>
+
+<details open>
+<summary><b>Tugas 5</b></summary>
+<br>
+
+### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+
+Urutan prioritas CSS Selector dimulai dari yang paling prioritas yaitu Inline styles > ID selector (`#id`) > Class/Attribute/Pseudo-class selector (`.class`, `[type="text"]`, `:hover`) > Type selector/Pseudo-element (`div`, `::before`).
+
+### Mengapa _responsive design_ menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan _responsive design_!
+
+_Responsive design_ memungkinkan situs web untuk menyesuaikan tampilannya di berbagai ukuran layar dan perangkat, seperti desktop, tablet, dan smartphone. Ini penting karena pengguna mengakses internet melalui berbagai perangkat dengan resolusi dan dimensi yang berbeda. Desain yang tidak responsif dapat membuat pengalaman pengguna buruk, seperti teks atau elemen yang tidak terbaca atau terlalu kecil di layar yang lebih kecil.
+- Contoh aplikasi yang sudah menerapkan _responsive design_ yaitu Facebook dan Google. Kedua platform ini menyesuaikan tampilan berdasarkan ukuran layar pengguna.
+- Contoh aplikasi yang belum menerapkan _responsive design_ yaitu situs web lama atau situs yang menggunakan _fixed design_ sehingga tidak menerapkan responsivitas, misalnya situs web yang hanya dioptimalkan untuk desktop tanpa memperhatikan pengguna mobile.
+
+### Jelaskan perbedaan antara _margin_, _border_, dan _padding_, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+- **_Margin_** adalah ruang di luar border elemen. Ini digunakan untuk membuat jarak antara elemen yang berbeda.
+- **_Border_** adalah garis yang mengelilingi padding dan konten elemen. _Border_ dapat dikustomisasi dengan warna, ketebalan, dan gaya.
+- **_Padding_** adalah ruang antara konten elemen dan border. _Padding_ menambah ruang di dalam elemen itu sendiri.
+- Contoh implementasi:
+`div {
+      margin: 20px;
+      border: 2px solid;
+      padding: 10px;
+  }`
+
+### Jelaskan konsep _flex box_ dan _grid layout_ beserta kegunaannya!
+
+- **_Flexbox_** adalah modul CSS yang dirancang untuk menyusun elemen secara fleksibel dan dinamis dalam satu dimensi (baik itu kolom atau baris). _Flexbox_ memudahkan pengaturan alignment, distribusi ruang, dan pengelolaan ukuran elemen dalam satu baris atau kolom. Kegunaan dari _flexbox_ adalah membuat layout yang responsif dengan mudah mengatur posisi dan ukuran elemen.
+- **_Grid Layout_** adalah modul CSS yang dapat membantu membuat tata letak dua dimensi (baris dan kolom). _Grid layout_ dapat membuat layout kompleks dengan lebih mudah dibandingkan metode tradisional.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+
 </details>
