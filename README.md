@@ -146,7 +146,7 @@ _Responsive design_ memungkinkan situs web untuk menyesuaikan tampilannya di ber
 - **_Margin_** adalah ruang di luar border elemen. Ini digunakan untuk membuat jarak antara elemen yang berbeda.
 - **_Border_** adalah garis yang mengelilingi padding dan konten elemen. _Border_ dapat dikustomisasi dengan warna, ketebalan, dan gaya.
 - **_Padding_** adalah ruang antara konten elemen dan border. _Padding_ menambah ruang di dalam elemen itu sendiri.
-Contoh implementasi:
+- Contoh implementasi:
 `div {
       margin: 20px;
       border: 2px solid;
