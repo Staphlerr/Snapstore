@@ -7,6 +7,9 @@
 <body class="product-page">
 <div style="background-image: url('{% static 'images/welcome.png' %}'); background-size: cover; border-radius: 25px; height: auto; aspect-ratio: 640 / 360;">
 </div>
+<!-- Mobile Welcome Banner -->
+<div class="md:hidden" style="background-image: url('{% static 'images/welcome.png' %}'); background-size: cover; height: 200px; border-radius: 25px;">
+</div>
 
 <!-- Info Blocks Section -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
@@ -49,6 +52,42 @@
       <h3 class="text-lg font-bold mb-2">Want to add product?</h3>
         <p class="text-base text-white mb-2">Click the button below to add a new item.</p>
         <a href="{% url 'main:create_item_entry' %}" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add New Item</a>
+    </div>
+  </div>
+</div>
+
+<!-- Info Blocks Section (Mobile) -->
+<div class="md:hidden grid grid-cols-1 gap-4 p-4">
+  <div class="info-block">
+    <div class="info-cover">
+      <h3 class="text-lg font-bold mb-2">Creator</h3>
+    </div>
+    <div class="info-content">
+      <h3 class="text-lg font-bold mb-2">Made by:</h3>
+      <p class="text-base text-white mb-2">Belva Ghani Abhinaya - 2306203526</p>
+      <p class="text-base text-white mb-2">PBP A</p>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-cover">
+      <h3 class="text-lg font-bold mb-2">Tagline</h3>
+    </div>
+    <div class="info-content">
+      <h3 class="text-lg font-bold mb-2">Our tagline:</h3>
+      <p class="text-base text-white mb-2">Snap dan Dapatkan Segalanya!</p>
+      <button class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Learn More</button>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-cover">
+      <h3 class="text-lg font-bold mb-2">Add Item</h3>
+    </div>
+    <div class="info-content">
+      <h3 class="text-lg font-bold mb-2">Want to add product?</h3>
+      <p class="text-base text-white mb-2">Click the button below to add a new item.</p>
+      <a href="{% url 'main:create_item_entry' %}" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add New Item</a>
     </div>
   </div>
 </div>
