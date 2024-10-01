@@ -159,6 +159,16 @@ _Responsive design_ memungkinkan situs web untuk menyesuaikan tampilannya di ber
 - **_Grid Layout_** adalah modul CSS yang dapat membantu membuat tata letak dua dimensi (baris dan kolom). _Grid layout_ dapat membuat layout kompleks dengan lebih mudah dibandingkan metode tradisional.
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
-
+1. Implementasi fungsi `edit_item` dan `delete_item` pada `views.py`, lalu tambahkan path URL kedua fungsi tadi ke `urls.py`.
+   - Fungsi `edit_item` digunakan untuk menyunting item yang telah ditambahkan pengguna
+   - Fungsi `delete_item` digunakan untuk menghapus item yang telah ditambahkan pengguna
+2. Konfigurasi static files pada `settings.py`
+3. Buat direktori baru yaitu static/css dengan file `global.css` di dalamnya, lalu hubungkan `global.css` dan script Tailwind ke `base.html`
+4. Lakukan styling pada tiap laman menggunakan html serta menyunting pada `global.css` untuk beberapa efeknya
+5. Untuk `product.html`, tambahkan no_product pada direktori static/images serta kalimat yang menunjukkan bahwa belum ada produk yang ditambahkan.
+6. Styling untuk setiap produk yang ditambahkan dengan bentuk card, dengan membuat file baru yaitu `card_product.html`
+7. Selanjutnya desain navigation bar untuk desktop, seperti `welcome {{user.username}}`, logo dan nama toko, button untuk `home` dan `add_new_item`, serta fungsi logout.
+8. Setelah desain navigation bar untuk desktop, desain untuk mobile dengan menggunakan hamburger menu icon, yang ketika ditekan akan memunculkan fungsi-fungsi seperti button untuk `home` dan `add_new_item`, `welcome {{user.username}}`, dan fungsi logout, sehingga responsif terhadap perbedaan ukuran device.
+9. Terakhir, implementasi juga fungsi desain untuk mobile pada laman lainnya, sehingga responsif terhadap perbedaan ukuran device.
 
 </details>
