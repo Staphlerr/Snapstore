@@ -9,6 +9,7 @@ class Product(models.Model):
     date = models.DateField(auto_now_add=True)
     description = models.TextField()
     price = models.IntegerField()
+    amount = models.IntegerField()
 
     @property
     def is_price_expensive(self):
