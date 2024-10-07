@@ -127,7 +127,7 @@ DEBUG = not PRODUCTION
 11. Terakhir, buka berkas `main.html` dan tambahkan kode `<h5>Sesi terakhir login: {{ last_login }}</h5>` untuk menampilkan last_login pengguna
 </details>
 
-<details open>
+<details>
 <summary><b>Tugas 5</b></summary>
 <br>
 
@@ -171,4 +171,62 @@ _Responsive design_ memungkinkan situs web untuk menyesuaikan tampilannya di ber
 8. Setelah desain navigation bar untuk desktop, desain untuk mobile dengan menggunakan hamburger menu icon, yang ketika ditekan akan memunculkan fungsi-fungsi seperti button untuk `home` dan `add_new_item`, `welcome {{user.username}}`, dan fungsi logout, sehingga responsif terhadap perbedaan ukuran device.
 9. Terakhir, implementasi juga fungsi desain untuk mobile pada laman lainnya, sehingga responsif terhadap perbedaan ukuran device.
 
+</details>
+
+<details open>
+<summary><b>Tugas 6</b></summary>
+<br>
+
+### Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+JavaScript memungkinkan interaktivitas pada halaman web seperti update konten secara dinamis tanpa perlu reload halaman, validasi input, dan pengalaman pengguna yang lebih baik. Selain itu, JavaScript dapat digunakan untuk melakukan validasi input pengguna sebelum dikirim ke server, yang membantu mengurangi beban server dan memberikan umpan balik lebih cepat, serta memungkinkan manipulasi elemen HTML secara dinamis, memungkinkan perubahan langsung pada elemen halaman, misalnya mengubah gaya atau teks secara real-time.
+
+### Jelaskan fungsi dari penggunaan `await` ketika kita menggunakan `fetch()`! Apa yang akan terjadi jika kita tidak menggunakan `await`?
+
+`await` digunakan untuk menghentikan eksekusi kode selanjutnya hingga `fetch()` selesai mengambil data dari server. Tanpa `await`, kode setelah `fetch()` akan langsung dijalankan sebelum data berhasil diambil, yang dapat menyebabkan hasil yang tidak diinginkan karena data mungkin belum tersedia. `await` menjadikan operasi `fetch()` lebih sinkron dengan menunggu hasil sebelum melanjutkan ke perintah berikutnya. Jika tidak menggunakan `await`, `fetch()` akan mengembalikan `Promise` dan kode berikutnya akan dieksekusi sebelum data tersedia. Hal ini berarti Anda mungkin mencoba mengakses data yang belum selesai dimuat, sehingga berisiko menghasilkan error atau data yang tidak valid.
+
+### Mengapa kita perlu menggunakan decorator `csrf_exempt` pada view yang akan digunakan untuk AJAX `POST`?
+
+`csrf_exempt` digunakan untuk mengecualikan view dari proses validasi token CSRF (Cross-Site Request Forgery). Pada AJAX POST, jika permintaan tidak menyertakan token CSRF yang sesuai, server akan menolak permintaan tersebut. `csrf_exempt` memungkinkan permintaan dari sumber yang tidak memiliki token valid untuk diproses, tetapi penggunaan decorator ini harus dilakukan dengan hati-hati, karena dapat menimbulkan celah keamanan.
+
+### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (_backend_) juga. Mengapa hal tersebut tidak dilakukan di _frontend_ saja?
+
+Pembersihan data input tidak dilakukan di frontend saja karena validasi di frontend dapat dengan mudah dilewati atau dimanipulasi oleh pengguna menggunakan alat seperti pengembang browser atau aplikasi lain. Dengan demikian, pembersihan dan validasi di backend tetap diperlukan untuk memastikan keamanan dan integritas data, serta untuk mencegah serangan seperti SQL Injection atau Cross-Site Scripting (XSS).
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+1. **AJAX GET**
+   - **Modifikasi Kode Cards untuk Mendukung AJAX GET**:
+     - Di template `main.html`, ubah struktur div untuk menampilkan data mood menjadi lebih dinamis menggunakan JavaScript. Hapus bagian conditional yang menampilkan data secara langsung dari context.
+     - Tambahkan div kosong `<div id="mood_entry_cards"></div>` sebagai kontainer untuk data mood yang akan diambil secara dinamis.
+
+   - **Pengambilan Data Mood Menggunakan AJAX GET**:
+     - Tambahkan fungsi `getMoodEntries()` menggunakan `fetch()` untuk mengambil data JSON dari endpoint `/json`.
+     - Gunakan `await` untuk memastikan data berhasil diambil sebelum diproses.
+     - Setelah data diambil, tambahkan fungsi `refreshMoodEntries()` untuk mengisi kontainer dengan card mood menggunakan data yang diambil. Pastikan hanya data yang relevan (yaitu data milik pengguna yang sedang logged-in) yang ditampilkan.
+
+2. **AJAX POST**
+   - **Membuat Tombol yang Membuka Modal Form Tambah Mood**:
+     - Tambahkan tombol di halaman utama untuk membuka modal form menggunakan JavaScript (`showModal()`). Tombol ini akan membuka modal yang berisi form untuk menambahkan data mood baru.
+     - Gunakan modal berbasis Tailwind CSS dengan ID `crudModal` untuk membuat form input.
+
+   - **Menutup Modal dan Membersihkan Form setelah Berhasil Tambah Mood**:
+     - Buat fungsi `addMoodEntry()` untuk menambahkan mood menggunakan `fetch()` ke endpoint `/create-ajax/`.
+     - Ketika data berhasil ditambahkan, panggil `hideModal()` untuk menutup modal, reset form menggunakan `document.getElementById("moodEntryForm").reset()`, dan panggil `refreshMoodEntries()` untuk memperbarui daftar mood.
+     - Jika terjadi kesalahan, tampilkan pesan error agar pengguna mendapat umpan balik yang jelas.
+
+3. **Buat Fungsi View Baru untuk Tambah Mood**
+   - Di `views.py`, buat fungsi `add_mood_entry_ajax()` untuk menangani request POST dari form tambah mood.
+   - Fungsi ini menggunakan `@csrf_exempt` untuk mengecualikan pengecekan CSRF dan `@require_POST` untuk memastikan hanya request POST yang diterima. Data mood kemudian disimpan ke dalam database.
+
+4. **Membuat Path `/create-ajax/` untuk Fungsi View**
+   - Di `urls.py`, tambahkan path `/create-ajax/` yang mengarah ke fungsi `add_mood_entry_ajax()`.
+
+5. **Menghubungkan Form Modal ke Path `/create-ajax/`**
+   - Form di modal dikonfigurasi agar saat disubmit memanggil `addMoodEntry()`, yang akan mengirimkan data ke `/create-ajax/` menggunakan `fetch()`.
+   - Pastikan form menggunakan `preventDefault()` untuk mencegah form melakukan submit biasa, sehingga data dapat dikirim secara asinkron tanpa reload halaman.
+
+6. **Refresh Halaman Utama Secara Asinkron untuk Menampilkan Data Mood Terbaru**
+   - Setelah mood berhasil ditambahkan, panggil `refreshMoodEntries()` untuk memperbarui konten `<div id="mood_entry_cards">` dengan data terbaru tanpa perlu memuat ulang halaman.
+   - Data mood akan diambil dari endpoint `/json` dan menampilkan card yang diperbarui, memastikan pengguna melihat data terbaru yang mereka tambahkan secara langsung.
+  
 </details>
